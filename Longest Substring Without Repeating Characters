@@ -1,0 +1,13 @@
+def lengthOfLongestSubstring(s):
+    char_index = {}  # stores the last index of each character
+    max_length = 0
+    start = 0  # start of the current window
+
+    for i, c in enumerate(s):
+        if c in char_index and char_index[c] >= start:
+            # move start to one after the last occurrence of c
+            start = char_index[c] + 1
+        char_index[c] = i
+        max_length = max(max_length, i - start + 1)
+
+    return max_length
