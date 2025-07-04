@@ -1,0 +1,10 @@
+from collections import defaultdict
+
+def groupAnagrams(strs):
+    anagrams = defaultdict(list)
+
+    for word in strs:
+        key = tuple(sorted(word))  # use tuple since list can't be dict key
+        anagrams[key].append(word)
+
+    return list(anagrams.values())
