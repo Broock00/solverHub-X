@@ -1,0 +1,19 @@
+n = int(input())
+heights = list(map(int, input().split()))
+
+# Find the index of the first tallest soldier from the left
+max_height = max(heights)
+max_index = heights.index(max_height)
+
+# Find the index of the last shortest soldier from the right
+min_height = min(heights)
+min_index = len(heights) - 1 - heights[::-1].index(min_height)
+
+# Calculate swaps
+swaps = max_index + (n - 1 - min_index)
+
+# If tallest is before shortest, reduce one swap (because they pass each other)
+if max_index > min_index:
+    swaps -= 1
+
+print(swaps)
