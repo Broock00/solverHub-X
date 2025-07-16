@@ -1,0 +1,19 @@
+n = int(input())
+arr = list(map(int, input().split()))
+
+indexed_arr = list(enumerate(arr, start=1))
+# Sort descending by value
+indexed_arr.sort(key=lambda x: -x[1])
+
+total_sum = sum(arr)
+current_sum = 0
+result = []
+
+for idx, val in indexed_arr:
+    current_sum += val
+    result.append(idx)
+    if current_sum > total_sum / 2:
+        break
+
+print(len(result))
+print(' '.join(map(str, result)))
