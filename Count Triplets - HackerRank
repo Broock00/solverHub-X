@@ -1,0 +1,15 @@
+from collections import defaultdict
+
+def countTriplets(arr, r):
+    count = 0
+    potential = defaultdict(int)
+    counter = defaultdict(int)
+
+    for val in reversed(arr):
+        if val * r * r in counter:
+            count += counter[val * r * r]
+        if val * r in potential:
+            counter[val] += potential[val * r]
+        potential[val] += 1
+
+    return count
