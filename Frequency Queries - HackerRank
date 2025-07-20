@@ -1,0 +1,21 @@
+from collections import defaultdict
+
+def freqQuery(queries):
+    freq = defaultdict(int)         # stores frequency of each number
+    freq_count = defaultdict(int)   # stores count of frequencies
+    result = []
+
+    for op, val in queries:
+        if op == 1:
+            freq_count[freq[val]] -= 1
+            freq[val] += 1
+            freq_count[freq[val]] += 1
+        elif op == 2:
+            if freq[val] > 0:
+                freq_count[freq[val]] -= 1
+                freq[val] -= 1
+                freq_count[freq[val]] += 1
+        elif op == 3:
+            result.append(1 if freq_count[val] > 0 else 0)
+
+    return result
